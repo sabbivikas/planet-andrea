@@ -1,0 +1,9 @@
+build/
+dist/
+generated
+generated*
+*.md
+.aider*
+*.json
+*.ejs
+*.toml

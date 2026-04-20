@@ -1,0 +1,12 @@
+{
+  "imports": {
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@~2.75.0",
+    "date-fns": "npm:date-fns@~4.1.0",
+    "date-fns-tz": "npm:date-fns-tz@~3.2.0",
+    "fs": "node:fs",
+    "jose": "npm:jose@~6.1.0",
+    "resend": "npm:resend@~4.1.2",
+    "standardwebhooks": "npm:standardwebhooks@~1.0.0",
+    "zod": "npm:zod@~4.3.5"
+  }
+}

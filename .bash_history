@@ -1,0 +1,2 @@
+SHjthDeDZH5WHLAkOj5rwQUBh
+npx claude

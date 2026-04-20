@@ -1,0 +1,94 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+.npm
+
+# Expo
+.expo/
+dist/
+dist-web/
+web-build/
+expo-env.d.ts
+
+# Native
+*.orig.*
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+# see https://github.com/bkeepers/dotenv/blob/c6e583a/README.md#what-other-env-files-can-i-use
+#.env
+.env.*local
+supabase/.env.*
+woz-build-config.*local*
+
+logs/
+.tmp/
+.temp/
+temp/
+
+# typescript
+*.tsbuildinfo
+
+# Supabase
+supabase/.branches
+supabase/.temp/*
+
+# these file store the currently linked supabase. 
+# We want to keep these setting so if we switch between git-branches we also switch between supabase instances
+!supabase/.temp/pooler-url*
+!supabase/.temp/project-ref*
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Coding tools
+.aider*
+
+# vscode and cursor ssh-server and claude
+.vscode-server
+.cursor-server
+
+## Claude Code
+### sensitive claude files with tokens
+.claude/*.local.*
+.claude/.credentials.json
+
+### ignore all symlinks to home directories
+.claude/projects/-Users*
+.claude/projects/-root*
+.claude/projects/-home*
+
+### ignore local cache and telemetry files
+.claude/cache
+.claude/debug
+.claude/downloads
+.claude/statsig
+
+# Local live preview script
+setup-live-preview*
