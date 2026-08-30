@@ -19,10 +19,17 @@ no live backend is connected and the app has never been built for the stores.
 2. Copy `.env-template` to `.env.local` and fill in at least:
    - `EXPO_PUBLIC_SUPABASE_URL`
    - `EXPO_PUBLIC_SUPABASE_ANON_KEY`
-   - `GOOGLE_MAPS_API_KEY` (Android maps)
    `.env.local` and `.env` are gitignored - never commit real keys.
 3. `npm run compile` (generates typed routes, then typechecks)
 4. `npm start`
+
+## Maps
+
+Maps use MapLibre (`@maplibre/maplibre-react-native`) with free OpenFreeMap
+tiles (OpenStreetMap data) - no API key, no billing account, no usage limits.
+Web builds are served by a maplibre-gl shim (`comp-lib/shims/MapLibre.web.tsx`,
+wired in `metro.config.js`). Native maps need a dev-client build (`eas build
+--profile development`), they don't run in Expo Go.
 
 ## Checks
 

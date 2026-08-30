@@ -1,3 +1,4 @@
+import { Camera, Map as MapLibreMap, Marker } from '@maplibre/maplibre-react-native';
 import { type ReactElement, type ReactNode } from 'react';
 import 'react-native-reanimated';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -244,10 +245,15 @@ function DescriptionSection(props: DescriptionSectionProps): ReactNode {
   );
 }
 
+/** Free map tiles (OpenStreetMap data), no API key required. Dark style matches the app theme. */
+const OPENFREEMAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
+
 interface VenueContactSectionProps {
   styles: VenueContactStyles;
   mapPreviewStyles: MapPreviewStyles;
   address: string;
+  latitude: number;
+  longitude: number;
   operatingHours: string;
   phone: string;
   onOpenDirections: () => void;
@@ -256,16 +262,34 @@ interface VenueContactSectionProps {
 interface MapPreviewSectionProps {
   styles: MapPreviewStyles;
   address: string;
+  latitude: number;
+  longitude: number;
   onOpenDirections: () => void;
 }
 
 function MapPreviewSection(props: MapPreviewSectionProps): ReactNode {
+  const coordinate: [number, number] = [props.longitude, props.latitude];
   return (
     <Pressable onPress={props.onOpenDirections} style={props.styles.container}>
-      <View style={props.styles.mapPlaceholder}>
-        <View style={props.styles.mapIconContainer}>
-          <MapPin size={28} color={props.styles.mapIconColor} />
-        </View>
+      {/* Free map: MapLibre SDK + OpenFreeMap tiles (OpenStreetMap data) - no API key needed */}
+      <MapLibreMap
+        style={props.styles.map}
+        mapStyle={OPENFREEMAP_STYLE_URL}
+        dragPan={false}
+        touchZoom={false}
+        doubleTapZoom={false}
+        doubleTapHoldZoom={false}
+        touchRotate={false}
+        touchPitch={false}
+      >
+        <Camera initialViewState={{ center: coordinate, zoom: 15 }} />
+        <Marker lngLat={coordinate}>
+          <View style={props.styles.pinContainer}>
+            <MapPin size={18} color="#FFF5EC" />
+          </View>
+        </Marker>
+      </MapLibreMap>
+      <View style={props.styles.mapAddressBar}>
         <CustomTextField styles={props.styles.mapAddressText} title={props.address} />
         <CustomTextField styles={props.styles.mapTapHint} title={t('activityDetail.getDirections')} />
       </View>
@@ -281,6 +305,8 @@ function VenueContactSection(props: VenueContactSectionProps): ReactNode {
       <MapPreviewSection
         styles={props.mapPreviewStyles}
         address={props.address}
+        latitude={props.latitude}
+        longitude={props.longitude}
         onOpenDirections={props.onOpenDirections}
       />
 
@@ -657,6 +683,8 @@ export default function ActivityActivityIdContainer(props: ActivityActivityIdPro
             styles={venueContactStyles}
             mapPreviewStyles={mapPreviewStyles}
             address={activity.address}
+            latitude={activity.latitude}
+            longitude={activity.longitude}
             operatingHours={activity.operatingHours}
             phone={activity.phone}
             onOpenDirections={onOpenDirections}

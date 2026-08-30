@@ -80,11 +80,11 @@ export interface VenueContactStyles {
 
 export interface MapPreviewStyles {
   container: ViewStyle;
-  mapPlaceholder: ViewStyle;
-  mapIconContainer: ViewStyle;
-  mapIconColor: string;
+  map: ViewStyle;
+  mapAddressBar: ViewStyle;
   mapAddressText: TextStyle;
   mapTapHint: TextStyle;
+  pinContainer: ViewStyle;
 }
 
 export interface ReviewCardStyles {
@@ -604,26 +604,32 @@ export function useActivityActivityIdStyles(): ActivityActivityIdStyles {
       borderRadius: CARD_BORDER_RADIUS,
       overflow: 'hidden',
     },
-    mapPlaceholder: {
+    map: {
+      height: 180,
+      width: '100%',
+    },
+    mapAddressBar: {
       backgroundColor: 'rgba(255, 245, 236, 0.06)',
-      borderRadius: CARD_BORDER_RADIUS,
+      borderBottomLeftRadius: CARD_BORDER_RADIUS,
+      borderBottomRightRadius: CARD_BORDER_RADIUS,
       borderWidth: 1,
+      borderTopWidth: 0,
       borderColor: 'rgba(255, 245, 236, 0.08)',
-      padding: spacingPresets.lg1,
+      paddingVertical: spacingPresets.sm,
+      paddingHorizontal: spacingPresets.md2,
+      alignItems: 'center',
+      gap: 2,
+    },
+    pinContainer: {
+      width: 36,
+      height: 36,
+      borderRadius: 18,
+      backgroundColor: 'rgba(255, 92, 77, 0.9)',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: spacingPresets.sm,
-      minHeight: 120,
+      borderWidth: 2,
+      borderColor: colors.customColors.cream,
     },
-    mapIconContainer: {
-      width: 48,
-      height: 48,
-      borderRadius: 24,
-      backgroundColor: 'rgba(255, 92, 77, 0.15)',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    mapIconColor: colors.primaryAccent,
     mapAddressText: {
       ...typographyPresets.Label,
       color: colors.customColors.cream,
