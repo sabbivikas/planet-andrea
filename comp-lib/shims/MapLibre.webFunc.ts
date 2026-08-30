@@ -1,8 +1,13 @@
 /**
  * Hook logic for the web MapLibre shim (see MapLibre.web.tsx).
  */
-import { Map as GLMap, Marker as GLMarker } from 'maplibre-gl';
+import { Map as GLMap, Marker as GLMarker, setWorkerUrl } from 'maplibre-gl';
 import { useEffect, useState, type RefObject } from 'react';
+
+// maplibre-gl v6 locates its web worker via import.meta.url, which in a Metro bundle
+// points at the app bundle and 404s - so no tiles ever load. Serve the worker from
+// the Expo public/ directory instead (copied from the maplibre-gl package).
+setWorkerUrl('/maplibre-gl-worker.mjs');
 
 export interface GLMapOptions {
   mapStyle?: string;

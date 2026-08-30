@@ -28,8 +28,11 @@ no live backend is connected and the app has never been built for the stores.
 Maps use MapLibre (`@maplibre/maplibre-react-native`) with free OpenFreeMap
 tiles (OpenStreetMap data) - no API key, no billing account, no usage limits.
 Web builds are served by a maplibre-gl shim (`comp-lib/shims/MapLibre.web.tsx`,
-wired in `metro.config.js`). Native maps need a dev-client build (`eas build
---profile development`), they don't run in Expo Go.
+wired in `metro.config.js`). The maplibre-gl web worker ships as a static file
+in `public/` (maplibre-gl can't bundle it through Metro); hosts must serve
+`.mjs` files with a JavaScript content type or the map renders blank. Native
+maps need a dev-client build (`eas build --profile development`), they don't
+run in Expo Go.
 
 ## Checks
 
