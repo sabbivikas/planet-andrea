@@ -19,13 +19,6 @@ const config: ExpoConfig = {
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
     },
-    config: process.env.GOOGLE_MAPS_API_KEY
-      ? {
-          googleMaps: {
-            apiKey: process.env.GOOGLE_MAPS_API_KEY,
-          },
-        }
-      : undefined,
   },
   web: {
     bundler: 'metro',
