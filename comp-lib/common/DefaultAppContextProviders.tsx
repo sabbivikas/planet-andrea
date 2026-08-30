@@ -7,7 +7,6 @@ import { CrashAnalyticsProvider } from '@/comp-lib/crash-analytics/CrashAnalytic
 import { ErrorBoundary } from '@/comp-lib/errors/ErrorBoundary';
 import { NavigationBridge } from '@/comp-lib/navigation/NavigationBridge';
 import { AnalyticsProvider } from '@/comp-lib/integrations/analytics/AnalyticsProvider';
-import { ReactInspector } from '@/comp-lib/react-inspector/ReactInspector';
 import { StyleProvider } from '@/comp-lib/styles/StyleContext';
 import { ToastProvider } from '@/comp-lib/toast/ToastContext';
 import { RevenueCatProvider } from '../integrations/revenue-cat/RevenueCatProvider';
@@ -23,11 +22,9 @@ export function DefaultAppContextProviders({ children }: PropsWithChildren): Rea
               <StyleProvider>
                 <CrashAnalyticsProvider>
                   <ErrorBoundary>
-                    <ReactInspector>
-                      <NavigationBridge>
-                        <ToastProvider>{children}</ToastProvider>
-                      </NavigationBridge>
-                    </ReactInspector>
+                    <NavigationBridge>
+                      <ToastProvider>{children}</ToastProvider>
+                    </NavigationBridge>
                   </ErrorBoundary>
                 </CrashAnalyticsProvider>
               </StyleProvider>

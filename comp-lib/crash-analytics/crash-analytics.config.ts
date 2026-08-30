@@ -2,7 +2,6 @@ export interface CrashAnalyticsConfig {
   sentryDsn: string;
   consoleEnabled: boolean;
   consolePatchEnabled: boolean;
-  parentWindowEnabled: boolean;
 }
 
 // Parse boolean environment variables with safe defaults
@@ -19,5 +18,4 @@ export const crashAnalyticsConfig: CrashAnalyticsConfig = {
   sentryDsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? '',
   consoleEnabled: parseBooleanEnv(process.env.EXPO_PUBLIC_CRASH_ANALYTICS_CONSOLE_ENABLED, false),
   consolePatchEnabled: parseBooleanEnv(process.env.EXPO_PUBLIC_CRASH_ANALYTICS_CONSOLE_PATCH_ENABLED, false),
-  parentWindowEnabled: parseBooleanEnv(process.env.EXPO_PUBLIC_CRASH_ANALYTICS_PARENT_WINDOW_ENABLED, false),
 };

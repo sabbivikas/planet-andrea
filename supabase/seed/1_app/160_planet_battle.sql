@@ -17,7 +17,7 @@ VALUES
   (uuid_at(15, 4), uuid_at(10, 4), 'WINNER_REVEALED', 3, CURRENT_TIMESTAMP - interval '6 hours', CURRENT_TIMESTAMP - interval '5 hours 57 minutes', uuid_at(14, 4)),
   (uuid_at(15, 5), uuid_at(10, 1), 'WINNER_REVEALED', 3, CURRENT_TIMESTAMP - interval '22 hours', CURRENT_TIMESTAMP - interval '21 hours 57 minutes', uuid_at(14, 5));
 
--- Seed notifications for test user (woz@example.com = uuid_at(1, 1))
+-- Seed notifications for test user (demo@example.com = uuid_at(1, 1))
 INSERT INTO private.notification (id, user_id, type, title, body, linked_group_id, linked_activity_id, linked_battle_id, is_read, created_at)
 VALUES
   (uuid_at(20, 1), uuid_at(1, 1), 'BATTLE_STARTED', 'Friday Night Crew', 'Battle is live! Vote for tonight''s plan now.', uuid_at(10, 1), NULL, uuid_at(15, 1), false, CURRENT_TIMESTAMP - interval '12 minutes'),

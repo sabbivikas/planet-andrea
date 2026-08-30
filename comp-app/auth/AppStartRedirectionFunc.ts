@@ -6,9 +6,9 @@ import { useAppRedirection } from './useAppRedirection';
 
 // Define the public routes that do not require authentication to be passed to the useAppRedirection hook
 const PUBLIC_ROUTES: RouteSegments<Route>[] = [
-  ['auth', 'login'],
-  ['auth', 'signup'],
-  ['auth', 'reset-password'],
+  ['auth', 'login'] as unknown as RouteSegments<Route>,
+  ['auth', 'signup'] as unknown as RouteSegments<Route>,
+  ['auth', 'reset-password'] as unknown as RouteSegments<Route>,
 
   // Add more public routes as needed
 ];
@@ -20,7 +20,7 @@ const IGNORE_POST_LOGIN_REDIRECTION_ROUTES: RouteSegments<Route>[] = [
    * "/auth/update-password" route is used for updating the password after login.
    * It contins url parameters that are critical for the auth update password flow, thus no redirection should occur.
    */
-  ['auth', 'update-password'],
+  ['auth', 'update-password'] as unknown as RouteSegments<Route>,
 
   // Add more routes that should not trigger app startup redirection as needed
 ];

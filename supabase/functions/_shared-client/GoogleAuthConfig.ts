@@ -9,8 +9,7 @@
 // go to: https://console.cloud.google.com/iam-admin/serviceaccounts
 //
 // enable vertex ai:
-// go to: https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=woz-builder
-// {"code":403,"message":"Vertex AI API has not been used in project woz-builder before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=woz-builder then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED"
+// If Vertex AI returns SERVICE_DISABLED, enable the Vertex AI API for the configured Google Cloud project.
 
 // https://cloud.google.com/docs/authentication/api-keys
 // https://cloud.google.com/resources/cloud-express-faqs?hl=en

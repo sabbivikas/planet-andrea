@@ -37,19 +37,17 @@ export interface BackendConfig {
   mapboxAccessToken?: string;
 }
 
-// Supabase url can come from various environment variables depending on the deployment context. E.g. the cloud-env declares it as `SUPABASE_WOZ_URL`.
+// Supabase URL can come from the local CLI defaults, production Supabase defaults, or Expo public env.
 const supabaseUrlStr =
   Deno.env.get('LOCALDEV_URL') ??
   Deno.env.get('SUPABASE_URL') ??
-  Deno.env.get('EXPO_PUBLIC_SUPABASE_URL') ??
-  Deno.env.get('SUPABASE_WOZ_URL');
+  Deno.env.get('EXPO_PUBLIC_SUPABASE_URL');
 const supabaseUrl = supabaseUrlStr != null ? toUrlStr(supabaseUrlStr) : undefined;
-// Supabase anon key can come from various environment variables depending on the deployment context. E.g. the cloud-env declares it as `SUPABASE_AUTH_TOKEN`.
+// Supabase anon key can come from the local CLI defaults, production Supabase defaults, or Expo public env.
 const supabaseAnonKey =
   Deno.env.get('LOCALDEV_ANON_KEY') ??
   Deno.env.get('SUPABASE_ANON_KEY') ??
-  Deno.env.get('EXPO_PUBLIC_SUPABASE_ANON_KEY') ??
-  Deno.env.get('SUPABASE_AUTH_TOKEN');
+  Deno.env.get('EXPO_PUBLIC_SUPABASE_ANON_KEY');
 const supabaseServiceRoleKey = Deno.env.get('LOCALDEV_SERVICE_ROLE_KEY') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
 // consider aws config optional, but it can be retrieved validated through getValidAwsAuthConfig if an App requires it

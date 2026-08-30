@@ -23,7 +23,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto" WITH SCHEMA "extensions";
 
 CREATE EXTENSION IF NOT EXISTS "supabase_vault" WITH SCHEMA "vault";
 -- Supabase vault extension resets the search path causiong "ERROR:  3F000: no schema has been selected to create in"
--- https://woz-crew.slack.com/archives/C09MUU8PXQB/p1761616184946489
+-- Work around Supabase Vault search_path behavior.
 -- Remove once supabase resolves this issue
 SET search_path to "\$user", public, extensions; 
 

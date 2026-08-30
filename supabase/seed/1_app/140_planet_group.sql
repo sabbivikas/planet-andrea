@@ -161,7 +161,7 @@ VALUES
   (uuid_at(19, 13), uuid_at(1, 2), uuid_at(14, 6), uuid_at(10, 1), 'LIKE'),
   (uuid_at(19, 14), uuid_at(1, 1), uuid_at(14, 4), uuid_at(10, 1), 'LIKE');
 
--- Seed pending invites targeting user 1 (woz@example.com)
+-- Seed pending invites targeting user 1 (demo@example.com)
 INSERT INTO private.invite (id, group_id, invited_by_user_id, invited_user_id, invite_code, is_accepted)
 VALUES
   (uuid_at(12, 1), uuid_at(10, 2), uuid_at(1, 2), uuid_at(1, 1), 'INVITE01CODE', false),

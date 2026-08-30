@@ -1,6 +1,6 @@
 import { EmailService } from '../_shared-client/email/EmailService.ts';
 
-const SEND_EMAIL_FROM = Deno.env.get('SB_AUTH_HOOK_SEND_EMAIL_FROM') ?? 'support@withwoz.com';
+const SEND_EMAIL_FROM = Deno.env.get('SB_AUTH_HOOK_SEND_EMAIL_FROM') ?? 'support@example.com';
 
 /**
  * Supabase auth webhook payload structure for send_email hook

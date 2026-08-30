@@ -27,7 +27,7 @@ port = 54322
 shadow_port = 54320
 # The database major version to use. This has to be the same as your remote database's. Run `SHOW
 # server_version;` on the remote database to check.
-major_version = 15
+major_version = 17
 
 [db.pooler]
 enabled = false
@@ -97,10 +97,11 @@ enabled = true
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
-site_url = "https://www.withwoz.com/app-email-confirmed"
+site_url = "http://localhost:8081"
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
 additional_redirect_urls = [
-  "undefined/auth/update-password"
+  "http://localhost:8081/auth/update-password",
+  "planetandrea://auth/update-password"
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
@@ -172,8 +173,8 @@ max_frequency = "5s"
 
 # Auth hooks configuration
 [auth.hook.send_email]
-enabled = true
-uri = "https://yjxetmkfbkjvndrkbhve.supabase.co/functions/v1/supabase-auth-hook/send-email"
+enabled = false
+uri = "http://127.0.0.1:54321/functions/v1/supabase-auth-hook/send-email"
 secrets = "env(SB_AUTH_HOOK_SECRETS_SEND_EMAIL)"
 
 

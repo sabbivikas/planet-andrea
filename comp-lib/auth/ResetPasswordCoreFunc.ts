@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
+import * as ExpoLinking from 'expo-linking';
 import type { Route } from 'expo-router';
+import { Linking } from 'react-native';
 
 import * as Auth from '@/api/auth-api';
 import { supabaseClient } from '@/api/supabase-client';
 import { alert } from '@/utils/alert';
 import type { ResetPasswordCoreProps } from './ResetPasswordCore.tsx';
-import { Linking } from 'react-native';
 
 export interface ResetPasswordCoreFunc {
   email: string;
@@ -30,9 +31,8 @@ export function useResetPasswordCore(props: ResetPasswordCoreProps): ResetPasswo
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
   function makeRedirectUrl(): string {
-    const bundleUrl = process.env.EXPO_PUBLIC_BUNDLE_URL_SSL;
     const updatePasswordRoute: Route = '/auth/update-password';
-    const redirectUrl = `${bundleUrl}${updatePasswordRoute}`;
+    const redirectUrl = ExpoLinking.createURL(updatePasswordRoute);
     console.debug('Made auth update password redirect url:', redirectUrl);
     return redirectUrl;
   }

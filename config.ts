@@ -39,6 +39,4 @@ function getAuthDetectSessionInUrl(): boolean | undefined {
   return undefined;
 }
 
-export const INSPECTOR_ENABLED: boolean = process.env.EXPO_PUBLIC_INSPECTOR_ENABLED === 'true';
-
 // process.env.LOG_DIR

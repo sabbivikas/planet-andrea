@@ -5,7 +5,6 @@ import { CrashAnalyticsService } from '@shared/crash-analytics/CrashAnalyticsSer
 import { crashAnalyticsConfig } from './crash-analytics.config.ts';
 import { getOriginalConsole, patchConsoleWithCrashAnalytics } from './crash-analytics.utils.ts';
 import { CrashAnalyticsReporterConsole } from './reporters/CrashAnalyticsReporterConsole';
-import { CrashAnalyticsReporterParentWindow } from './reporters/CrashAnalyticsReporterParentWindow';
 
 export let CrashAnalyticsProvider: ComponentType<PropsWithChildren> = (props: PropsWithChildren): ReactNode => {
   return <>{props.children}</>;
@@ -19,13 +18,6 @@ if (crashAnalyticsConfig.consoleEnabled) {
     crashAnalyticsConfig.consolePatchEnabled ? getOriginalConsole() : console,
   );
   reporterRegistryFrontend.registerReporter('console', consoleReporter);
-}
-
-// Conditionally register the parent window reporter for web environments based on config
-// This will send console logs to the parent window via postMessage
-if (crashAnalyticsConfig.parentWindowEnabled) {
-  const parentWindowReporter = new CrashAnalyticsReporterParentWindow();
-  reporterRegistryFrontend.registerReporter('parentWindow', parentWindowReporter);
 }
 
 // Dynamically load the Sentry reporter only when Sentry DSN is set

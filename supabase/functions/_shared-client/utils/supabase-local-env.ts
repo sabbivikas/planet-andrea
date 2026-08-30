@@ -23,7 +23,7 @@ export const supabaseTestingEnv: SupabaseEnvironment = (() => {
   try {
     // suppress errors such as `/bin/sh: supabas: command not found` or
     // `WARN: no SMS provider is enabled. Disabling phone login` or
-    // `Stopped services: [supabase_edge_runtime_WozTest supabase_pooler_WozTest]`
+    // Example: `Stopped services: [supabase_edge_runtime_ProjectName supabase_pooler_ProjectName]`
     const output = execSync('supabase status -o json 2>/dev/null', { encoding: 'utf8' });
     const status = JSON.parse(output) satisfies SupabaseEnvironment;
 

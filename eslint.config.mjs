@@ -173,6 +173,12 @@ export default defineConfig(
       '@typescript-eslint/array-type': 'off',
       //Do not pass children as props. Instead, nest children between the opening and closing tags.eslint
       'react/no-children-prop': 'off',
+      'import/namespace': 'off',
+      'import/export': 'off',
+      'import/no-unresolved': 'off',
+      'import/no-duplicates': 'off',
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
       // warns if there are both default imports and named imports. We use e.g. the t() functon
       // 'import/no-named-as-default-member': 'off'
 

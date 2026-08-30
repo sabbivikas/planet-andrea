@@ -43,8 +43,8 @@ INSERT INTO
       generate_series(1, 11)
   );
 
--- update the 11th user to have email 'woz@example.com' for better UX
-UPDATE auth.users SET email = 'woz@example.com' WHERE id = uuid_at(1, 1);
+-- update the 11th user to have a predictable local development email
+UPDATE auth.users SET email = 'demo@example.com' WHERE id = uuid_at(1, 1);
 
 -- test user email identities
 INSERT INTO

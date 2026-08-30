@@ -211,7 +211,7 @@ export function buildInitialFormState(controls: FormControlConfig[]): Record<str
       if (dv == null) {
         defaultDate = undefined;
       } else if (dv instanceof Date) {
-        // handles Date object that set by llm (e.g., https://github.com/WithWoz/AppCore/commit/050b51006dd72ce52caf182f44d65151378c3fec)
+        // Handles Date objects that can be produced by generated form configuration.
         defaultDate = new Date(dv);
       } else if (isTimeOnly) {
         // 'HH:mm:ss' or 'HH:mm'
