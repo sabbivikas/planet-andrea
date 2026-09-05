@@ -157,7 +157,7 @@ function TypingDot(props: TypingDotProps): ReactNode {
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    ...(props.dotStyle as object),
+    ...(props.dotStyle),
     opacity: opacity.value,
   }));
 

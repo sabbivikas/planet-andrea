@@ -1,12 +1,16 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 import type { bigintnum, Database, timestamptzstr, uuidstr } from '@shared/generated-db-types';
-import { testingAnonKey, testingUrl } from '../test-utils';
+import { describeSupabase, testingAnonKey, testingUrl } from '../test-utils';
 
 // Create a Supabase client using environment variables
-const supabaseClient: SupabaseClient<Database> = createClient(testingUrl, testingAnonKey);
+let supabaseClient: SupabaseClient<Database>;
 
-describe('Database uuid functions', () => {
+beforeAll(() => {
+  supabaseClient = createClient(testingUrl!, testingAnonKey!);
+});
+
+describeSupabase('Database uuid functions', () => {
   // prettier-ignore
   it('uuid_from_millis', async () => {
     expect(

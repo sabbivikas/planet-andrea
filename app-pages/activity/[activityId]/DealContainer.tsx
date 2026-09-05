@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode } from 'react';
-import 'react-native-reanimated';
 import Animated, { FadeInDown, FadeIn, ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Pressable, ScrollView, ActivityIndicator } from 'react-native';

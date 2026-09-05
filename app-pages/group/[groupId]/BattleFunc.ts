@@ -266,7 +266,7 @@ function mapMemberDisplays(
 
 function getRandomRpsChoice(): RpsChoice {
   const choices: RpsChoice[] = ['ROCK', 'PAPER', 'SCISSORS'];
-  return choices[Math.floor(Math.random() * choices.length)] as RpsChoice;
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function getRpsRoundResult(userChoice: RpsChoice, appChoice: RpsChoice): RpsRoundResult {

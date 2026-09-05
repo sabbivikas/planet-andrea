@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode, useEffect } from 'react';
-import 'react-native-reanimated';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,

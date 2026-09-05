@@ -4,24 +4,30 @@ import { type Database } from '@shared/generated-db-types';
 import { sendEmailText } from '../email-api';
 import { createSupabaseTestingToken, testingAnonKey, testingUrl, testUserEmail, testUserId } from '../test-utils';
 
-const testingJwt = createSupabaseTestingToken(testUserEmail, testUserId);
+let testingJwt: string;
 
 // increase the timeout for debugging
 jest.setTimeout(20000);
 
 // Create a Supabase client that can access our test database with the generated test token
-const supabaseClient: SupabaseClient<Database> = createClient(testingUrl, testingAnonKey, {
-  auth: {
-    persistSession: false,
-    autoRefreshToken: false,
-    detectSessionInUrl: false,
-  },
-  global: {
-    headers: {
-      Authorization: `Bearer ${testingJwt}`,
+let supabaseClient: SupabaseClient<Database>;
+
+beforeAll(() => {
+  testingJwt = createSupabaseTestingToken(testUserEmail, testUserId);
+  supabaseClient = createClient(testingUrl!, testingAnonKey!, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
     },
-  },
+    global: {
+      headers: {
+        Authorization: `Bearer ${testingJwt}`,
+      },
+    },
+  });
 });
+
 
 describe.skip('Email Api', () => {
   it('sends a simple email with text', async () => {

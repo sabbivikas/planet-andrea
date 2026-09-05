@@ -2,16 +2,29 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 import type { Database, ProfileUpdateV1 } from '@shared/generated-db-types';
 import { readProfile, readProfileWithUser, updateProfile } from '@shared/profile-db';
-import { createSupabaseTestingToken, testingAnonKey, testingUrl, testUserEmail, testUserId } from '../test-utils';
+import {
+  createSupabaseTestingToken,
+  describeSupabase,
+  testingAnonKey,
+  testingUrl,
+  testUserEmail,
+  testUserId,
+} from '../test-utils';
 
-const testingJwt = createSupabaseTestingToken(testUserEmail, testUserId);
+let testingJwt: string;
 
 // Create a Supabase client that can access our test database with the generated test token
-const supabaseClient: SupabaseClient<Database> = createClient(testingUrl, testingAnonKey, {
-  accessToken: async () => {
-    return testingJwt;
-  },
+let supabaseClient: SupabaseClient<Database>;
+
+beforeAll(() => {
+  testingJwt = createSupabaseTestingToken(testUserEmail, testUserId);
+  supabaseClient = createClient(testingUrl!, testingAnonKey!, {
+    accessToken: async () => {
+      return testingJwt;
+    },
+  });
 });
+
 
 const mockProfile = {
   id: testUserId,
@@ -42,7 +55,7 @@ const createMockClient = (data: any = null, error: any = null) => {
   } as unknown as SupabaseClient<Database>;
 };
 
-describe('Profile', () => {
+describeSupabase('Profile', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('should fetch basic profile data', async () => {
@@ -77,7 +90,7 @@ describe('Profile', () => {
   });
 });
 
-describe('Profile Integration', () => {
+describeSupabase('Profile Integration', () => {
   it('should fetch basic profile data from the database', async () => {
     const result = await readProfile(supabaseClient);
     expect(result).toHaveProperty('fullName');

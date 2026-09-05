@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode } from 'react';
-import 'react-native-reanimated';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Pressable, ScrollView } from 'react-native';
@@ -398,7 +397,7 @@ export default function InviteContainer(props: InviteProps): ReactNode {
               autoCorrect={false}
               leftIcon={({ size, color }) => (
                 <View style={{ width: size, height: size }}>
-                  <Search size={size ?? 18} color={color as string} />
+                  <Search size={size ?? 18} color={color} />
                 </View>
               )}
             />

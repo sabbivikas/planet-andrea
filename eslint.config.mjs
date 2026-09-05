@@ -149,6 +149,8 @@ export default defineConfig(
       'task-logs',
       'dist/**',
       'build/**',
+      // vendored maplibre-gl build artifacts served as static files
+      'public/**',
     ],
   },
   {

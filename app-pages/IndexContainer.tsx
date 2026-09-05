@@ -1,8 +1,7 @@
 import { type ReactNode } from 'react';
-import 'react-native-reanimated';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Image, Pressable } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { Orbit } from 'lucide-react-native';
 
 import { CustomButton } from '@/comp-lib/core/custom-button/CustomButton';
