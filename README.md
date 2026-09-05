@@ -54,13 +54,16 @@ run in Expo Go.
    environment variables or a local `.env` - never committed).
 3. **Payments**: RevenueCat keys (`EXPO_PUBLIC_REVENUECAT_API_KEY_*`) and
    `EXPO_PUBLIC_PURCHASE_ENV=production`.
-4. **Privacy**: the app uses contacts, location, and government-ID
-   verification - it needs a privacy policy, privacy manifest, and in-app
-   account deletion before review.
+4. **Privacy**: in-app account deletion is wired (Settings > Delete Account,
+   through the `user` edge function). Policy drafts live in
+   `docs/PRIVACY_POLICY.md` and `docs/TERMS_OF_SERVICE.md`; they still need a
+   public URL and a support email (set `EXPO_PUBLIC_PRIVACY_POLICY_URL`,
+   `EXPO_PUBLIC_TERMS_OF_SERVICE_URL`, `EXPO_PUBLIC_SUPPORT_EMAIL` - the
+   Settings buttons read them via `legalConfig`). An iOS privacy manifest is
+   still needed before review.
 5. **Email template**: `email/confirm.html` is the Supabase auth confirmation
-   email - paste it into the Supabase dashboard (Authentication > Email
-   Templates). The old Woz logo image was replaced with a text header; swap in
-   real branding when it exists.
+   email (Planet-branded) - paste it into the Supabase dashboard
+   (Authentication > Email Templates).
 
 ## Repo notes
 
