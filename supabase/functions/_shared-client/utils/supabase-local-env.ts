@@ -18,13 +18,15 @@ export interface SupabaseEnvironment {
   STUDIO_URL: string;
 }
 
-// Load Supabase environment values once and cache the result
-export const supabaseTestingEnv: SupabaseEnvironment = (() => {
+// Load Supabase environment values once and cache the result.
+// Empty when no local Supabase stack is running (or the CLI is absent) -
+// DB-backed test suites skip themselves in that case (see describeSupabase).
+export const supabaseTestingEnv: SupabaseEnvironment | null = (() => {
   try {
-    // suppress errors such as `/bin/sh: supabas: command not found` or
+    // suppress errors such as `/bin/sh: supabase: command not found` or
     // `WARN: no SMS provider is enabled. Disabling phone login` or
     // `Stopped services: [supabase_edge_runtime_WozTest supabase_pooler_WozTest]`
-    const output = execSync('supabase status -o json 2>/dev/null', { encoding: 'utf8' });
+    const output = execSync('supabase status -o json 2>/dev/null', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
     const status = JSON.parse(output) satisfies SupabaseEnvironment;
 
     // Set environment variables
@@ -33,20 +35,32 @@ export const supabaseTestingEnv: SupabaseEnvironment = (() => {
     }
 
     return status;
-  } catch (error) {
-    // fail silently
-    console.warn('Failed to load Supabase environment:', error instanceof Error ? error.message : String(error));
-    return {} as SupabaseEnvironment;
+  } catch {
+    return null;
   }
 })();
 
-export const testingUrl = process.env.TESTING_SUPABASE_URL ?? supabaseTestingEnv.API_URL;
-export const testingAnonKey = process.env.TESTING_SUPABASE_ANON_KEY ?? supabaseTestingEnv.ANON_KEY;
+export const hasLocalSupabase: boolean = supabaseTestingEnv !== null;
 
-const signer = createSigner({
-  key: supabaseTestingEnv.JWT_SECRET,
-  algorithm: 'HS256',
-});
+export const testingUrl = process.env.TESTING_SUPABASE_URL ?? supabaseTestingEnv?.API_URL;
+export const testingAnonKey = process.env.TESTING_SUPABASE_ANON_KEY ?? supabaseTestingEnv?.ANON_KEY;
+
+type Signer = (payload: unknown) => string;
+
+let signer: Signer | undefined;
+
+function getSigner(): Signer {
+  if (!signer) {
+    const key = supabaseTestingEnv?.JWT_SECRET;
+    if (!key) {
+      throw new Error(
+        'No local Supabase environment found. Start one with `npm run supabase` before running DB-backed tests.',
+      );
+    }
+    signer = createSigner({ key, algorithm: 'HS256' }) as unknown as Signer;
+  }
+  return signer;
+}
 
 // https://catjam.fi/articles/supabase-gen-access-token
 export function createSupabaseTestingToken(userEmail: emailstr, userId: uuidstr): string {
@@ -63,5 +77,5 @@ export function createSupabaseTestingToken(userEmail: emailstr, userId: uuidstr)
     email: userEmail,
     role: 'authenticated',
   };
-  return signer(payload);
+  return getSigner()(payload);
 }

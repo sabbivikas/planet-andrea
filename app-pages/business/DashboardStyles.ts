@@ -5,8 +5,7 @@ import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
 
 import { useStyleContext } from '@/comp-lib/styles/StyleContext';
 import { CustomButtonStyles } from '@/comp-lib/core/custom-button/CustomButtonStyles';
-import { CustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
-import { useCustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
+import { CustomHeaderStyles , useCustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
 
 // ── Sub-component style interfaces ──
 

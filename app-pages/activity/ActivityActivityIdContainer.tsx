@@ -1,6 +1,5 @@
 import { Camera, Map as MapLibreMap, Marker } from '@maplibre/maplibre-react-native';
 import { type ReactElement, type ReactNode } from 'react';
-import 'react-native-reanimated';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { View, ScrollView, FlatList, Pressable, Modal, type ListRenderItemInfo, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

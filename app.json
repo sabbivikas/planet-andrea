@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Planet",
-    "owner": "withwoz",
-    "slug": "amethy-caribo-364",
+    "owner": "vikas_sabbi",
+    "slug": "planet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,7 +22,13 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "package": "com.sabbivikas.planet"
+      "package": "com.sabbivikas.planet",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -85,6 +91,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "cc873272-b2a9-4b3d-a77d-c5e7d697e5c5"
+      }
     }
   }
 }
