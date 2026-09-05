@@ -3,10 +3,9 @@
  */
 
 import { useState, type ReactNode } from 'react';
-import 'react-native-reanimated';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, ScrollView, Pressable, ActivityIndicator } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
 import { Image } from 'expo-image';
 import {
   ImagePlus,

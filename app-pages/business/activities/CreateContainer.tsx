@@ -3,10 +3,9 @@
  */
 
 import { type ReactNode } from 'react';
-import 'react-native-reanimated';
+import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, ScrollView, Pressable, Modal } from 'react-native';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
 import Slider from '@react-native-community/slider';
 import { Image } from 'expo-image';
 import { ImagePlus, Eye, X, Zap, Link2, Tag, Check } from 'lucide-react-native';

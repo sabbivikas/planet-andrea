@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode, useState, useEffect } from 'react';
-import 'react-native-reanimated';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -248,7 +247,7 @@ function PulsingDot(props: PulsingDotProps): ReactNode {
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    ...(props.dotStyle as object),
+    ...(props.dotStyle),
     opacity: opacity.value,
   }));
 

@@ -9,6 +9,7 @@ import { type Database } from '@shared/generated-db-types';
 import { ENTITY_SYSTEM } from '@shared/profile-db';
 import {
   createSupabaseTestingToken,
+  describeSupabase,
   testConversation2Id,
   testingAnonKey,
   testingUrl,
@@ -16,19 +17,25 @@ import {
   testUser2Id,
 } from '../test-utils';
 
-const testingJwt = createSupabaseTestingToken(testUser2Email, testUser2Id);
+let testingJwt: string;
 
 // increase the timeout for debugging
 jest.setTimeout(20000);
 
 // Create a Supabase client that can access our test database with the generated test token
-const supabaseClient: SupabaseClient<Database> = createClient(testingUrl, testingAnonKey, {
-  accessToken: async () => {
-    return testingJwt;
-  },
+let supabaseClient: SupabaseClient<Database>;
+
+beforeAll(() => {
+  testingJwt = createSupabaseTestingToken(testUser2Email, testUser2Id);
+  supabaseClient = createClient(testingUrl!, testingAnonKey!, {
+    accessToken: async () => {
+      return testingJwt;
+    },
+  });
 });
 
-describe('Conversation', () => {
+
+describeSupabase('Conversation', () => {
   it('readAllConversations', async () => {
     const conversations = await readConversations(supabaseClient);
     // Ensure the data is an array

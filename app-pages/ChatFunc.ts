@@ -191,8 +191,7 @@ function attachTimestampsAndSeparators(messages: ChatMessageItem[]): ChatMessage
     const nextMsg = index < messages.length - 1 ? messages[index + 1] : undefined;
     const needsSeparator =
       msg.createdAt != null &&
-      (nextMsg == null ||
-        nextMsg.createdAt == null ||
+      (nextMsg?.createdAt == null ||
         !isSameDay(msg.createdAt, nextMsg.createdAt));
 
     return {

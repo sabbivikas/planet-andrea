@@ -255,7 +255,7 @@ export function useActivitiesActivityId(props: ActivitiesActivityIdProps): Activ
     setIsLoading(true);
     try {
       const detail = await readActivityEditDetail(supabaseClient, activityId);
-      if (detail == null || detail.activity == null) {
+      if (detail?.activity == null) {
         setError(new Error('Activity not found'));
         return;
       }

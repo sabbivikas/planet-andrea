@@ -3,13 +3,11 @@
  */
 
 import { type ReactNode } from 'react';
-import 'react-native-reanimated';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, ScrollView, Pressable, Modal } from 'react-native';
 import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, ScrollView, Pressable, Modal , ActivityIndicator } from 'react-native';
 import { Eye, X, Check, Calendar, Clock, Users, DollarSign, Tag, Link2 } from 'lucide-react-native';
 
-import { ActivityIndicator } from 'react-native';
 import { CustomButton } from '@/comp-lib/core/custom-button/CustomButton';
 import { CustomTextField } from '@/comp-lib/core/custom-text-field/CustomTextField';
 import { CustomTextInput } from '@/comp-lib/core/custom-text-input/CustomTextInput';

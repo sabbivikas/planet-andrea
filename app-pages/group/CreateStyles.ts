@@ -8,8 +8,7 @@ import { CustomButtonStyles } from '@/comp-lib/core/custom-button/CustomButtonSt
 import { CustomTextInputStyles } from '@/comp-lib/core/custom-text-input/CustomTextInputStyles';
 import { CustomSwitchStyles } from '@/comp-lib/core/custom-switch/CustomSwitchStyles';
 import { SliderControlStyles } from '@/comp-lib/form/controls/slider-control/SliderControlStyles';
-import { CustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
-import { useCustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
+import { CustomHeaderStyles , useCustomHeaderStyles } from '@/comp-lib/custom-header/CustomHeaderStyles';
 
 const GROUP_PHOTO_SIZE = 110;
 const CAMERA_BADGE_SIZE = 38;

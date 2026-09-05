@@ -10,8 +10,9 @@ other crews heading to the same place. Businesses can post deals.
 
 ## Status
 
-**Snapshot, not yet deployed.** The code typechecks and unit tests pass, but
-no live backend is connected and the app has never been built for the stores.
+**In production prep.** The code typechecks and unit tests pass. The Supabase
+backend (database, auth, edge functions) is live in the owner's own Supabase
+project; the app has not yet been built for the stores.
 
 ## Running locally
 
@@ -44,12 +45,13 @@ run in Expo Go.
 
 ## Before App Store submission (TODO)
 
-1. **Expo account**: `app.json` still has `owner: "withwoz"` (the Woz
-   account). Change it to your own Expo account before `eas build`, then run
-   `eas init` to link a new EAS project.
-2. **Backend**: deploy `supabase/` to a live Supabase project and set the env
-   vars from `.env-template` / `supabase/.env-template` (Woz dashboard or
-   Supabase project settings).
+1. ~~**Expo account**~~ Done: `app.json` owner is `vikas_sabbi`, slug
+   `planet`, and the EAS project `@vikas_sabbi/planet` is created and linked
+   (`extra.eas.projectId`). `eas build` works from here.
+2. **Backend env**: the Supabase backend is deployed and live; make sure the
+   production values from `.env-template` (`EXPO_PUBLIC_SUPABASE_URL`,
+   `EXPO_PUBLIC_SUPABASE_ANON_KEY`, ...) are set for the build (EAS
+   environment variables or a local `.env` - never committed).
 3. **Payments**: RevenueCat keys (`EXPO_PUBLIC_REVENUECAT_API_KEY_*`) and
    `EXPO_PUBLIC_PURCHASE_ENV=production`.
 4. **Privacy**: the app uses contacts, location, and government-ID

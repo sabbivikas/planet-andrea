@@ -64,7 +64,7 @@ export function useOrbitScreen(props: OrbitScreenProps): OrbitScreenFunc {
   }
 
   async function fetchMessagesAsync(): Promise<void> {
-    const msgs = await readOrbitChatMessages(supabaseClient, orbitChannelId as uuidstr);
+    const msgs = await readOrbitChatMessages(supabaseClient, orbitChannelId);
     if (!isMountedRef.current) return;
     // Messages come in DESC order, reverse for display
     setMessages([...msgs].reverse());
@@ -92,7 +92,7 @@ export function useOrbitScreen(props: OrbitScreenProps): OrbitScreenFunc {
   async function sendMessageAsync(text: string): Promise<void> {
     setIsSending(true);
     setChatInput('');
-    const msg = await sendOrbitChatMessage(supabaseClient, orbitChannelId as uuidstr, text);
+    const msg = await sendOrbitChatMessage(supabaseClient, orbitChannelId, text);
     if (!isMountedRef.current) return;
     if (msg != null) {
       setMessages((prev) => [...prev, msg]);

@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode, useMemo } from 'react';
-import 'react-native-reanimated';
 import Animated, {
   FadeInDown,
   FadeIn,
@@ -37,12 +36,6 @@ import {
   X,
 } from 'lucide-react-native';
 
-// ── Background images (same as invite card) ──
-
-const BG_SOLO_1 = require('@/assets/images/invite-bg-solo-1.png');
-const BG_SOLO_2 = require('@/assets/images/invite-bg-solo-2.png');
-const BG_MERGE = require('@/assets/images/invite-bg-merge.png');
-
 import { t } from '@/i18n';
 import { CustomTextField } from '@/comp-lib/core/custom-text-field/CustomTextField';
 import { CustomButton } from '@/comp-lib/core/custom-button/CustomButton';
@@ -67,6 +60,12 @@ import {
   type SectionTitleStyles,
   type DealModalStyles,
 } from './ResultsStyles';
+
+// ── Background images (same as invite card) ──
+
+const BG_SOLO_1 = require('@/assets/images/invite-bg-solo-1.png');
+const BG_SOLO_2 = require('@/assets/images/invite-bg-solo-2.png');
+const BG_MERGE = require('@/assets/images/invite-bg-merge.png');
 
 // ── Constants ──
 

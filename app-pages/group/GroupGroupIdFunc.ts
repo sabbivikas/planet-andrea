@@ -13,10 +13,10 @@ import type { GroupChatPreviewV1, GroupMemberWithProfileV1, GroupRankedActivityV
 import { PLANET_AVATAR_URLS, isPlanetAvatarUrl, getPlanetAvatarType, type PlanetAvatarType } from '@/comp-app/PlanetAvatar';
 import { uploadProfileImage, type BaseImagePickerAsset } from '@/api/asset-api';
 import { useImagePicker } from '@/comp-lib/assets/useImagePicker';
-
-export type { PlanetAvatarType };
 import { toUuidStr, toTimestamptzStr } from '@shared/generated-db-types';
 import { GroupGroupIdProps } from '@/app/group/[groupId]';
+
+export type { PlanetAvatarType };
 
 // ── Constants ──
 

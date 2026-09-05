@@ -126,7 +126,7 @@
     ]
   },
   "main": "expo-router/entry",
-  "name": "wozcore",
+  "name": "planet",
   "private": true,
   "scripts": {
     "compile": "npx expo customize tsconfig.json && npx tsc --noEmit -t es2022 -m es2022",
@@ -136,11 +136,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "supabase": "supabase start",
-    "db:gen-types": "npx tsx ../WozCore/scripts/gen-db-types.ts ./supabase/schemas ./supabase/functions/_shared-client/generated-db-types.ts",
     "db:local-reset": "supabase db reset",
     "db:test": "supabase test db",
     "db:lint": "supabase db lint",
-    "db:diff-local": "npx tsx ../WozCore/scripts/db-diff.ts",
     "db:diff": "supabase stop && supabase db diff --local -f changes && supabase start",
     "edge-functions": "supabase functions serve --env-file ./supabase/.env.local --no-verify-jwt",
     "edge-functions:verbose": "supabase functions serve --env-file ./supabase/.env.local --no-verify-jwt -debug ",
@@ -151,12 +149,7 @@
     "lint": "npx eslint .",
     "lint:changes": "npx eslint $(git diff --name-only HEAD | grep -E '\\.(js|jsx|ts|tsx)$' | xargs)",
     "lint:expo": "expo lint",
-    "prepare": "chmod -R +rxw .husky/ && chmod +x ./node_modules/husky/bin.js && husky",
-    "sshbuilder:git-push-deploy": "npm run compile && ../woz-cli.sh gitPushDeploy",
-    "sshbuilder:gen-db-types": "../woz-cli.sh genDBTypes",
-    "sshbuilder:gen-i18n-types": "../woz-cli.sh genI18nTypes",
-    "sshbuilder:envVars": "../woz-cli.sh envVars",
-    "sshbuilder:refresh-integration-tokens": "../woz-cli.sh refreshIntegrationTokens"
+    "prepare": "chmod -R +rxw .husky/ && chmod +x ./node_modules/husky/bin.js && husky"
   },
   "version": "1.0.0"
 }
