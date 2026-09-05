@@ -1,28 +1,28 @@
 {
   "expo": {
-    "name": "Activity Clash",
+    "name": "Planet",
     "owner": "withwoz",
     "slug": "amethy-caribo-364",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "planet",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.woz.test"
+      "bundleIdentifier": "com.sabbivikas.planet"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "config": {
-        "googleMaps": {
-          "apiKey": "process.env.GOOGLE_MAPS_API_KEY"
-        }
-      }
+      "package": "com.sabbivikas.planet"
     },
     "web": {
       "bundler": "metro",

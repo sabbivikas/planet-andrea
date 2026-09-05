@@ -11,6 +11,7 @@ const isWebExport = process.env.EXPO_WEB_BUILD === 'true';
 const hasSentry = process.env.EXPO_PUBLIC_SENTRY_DSN && !isWebExport;
 
 const mapsShim = path.resolve(__dirname, 'comp-lib/shims/ReactNativeMaps.web.tsx');
+const mapLibreShim = path.resolve(__dirname, 'comp-lib/shims/MapLibre.web.tsx');
 
 let config;
 if (hasSentry) {
@@ -63,6 +64,11 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 
   if (platform === 'web' && moduleName === 'react-native-maps') {
     return { type: 'sourceFile', filePath: mapsShim };
+  }
+
+  // MapLibre RN has no web support; use the maplibre-gl JS shim on web.
+  if (platform === 'web' && moduleName === '@maplibre/maplibre-react-native') {
+    return { type: 'sourceFile', filePath: mapLibreShim };
   }
 
   return context.resolveRequest(context, moduleName, platform);
