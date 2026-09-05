@@ -41,4 +41,14 @@ function getAuthDetectSessionInUrl(): boolean | undefined {
 
 export const INSPECTOR_ENABLED: boolean = process.env.EXPO_PUBLIC_INSPECTOR_ENABLED === 'true';
 
+/**
+ * Legal and support links shown in Settings. Configure via EAS environment
+ * variables before store submission; all three are optional at build time.
+ */
+export const legalConfig = {
+  privacyPolicyUrl: process.env.EXPO_PUBLIC_PRIVACY_POLICY_URL,
+  termsOfServiceUrl: process.env.EXPO_PUBLIC_TERMS_OF_SERVICE_URL,
+  supportEmail: process.env.EXPO_PUBLIC_SUPPORT_EMAIL,
+};
+
 // process.env.LOG_DIR

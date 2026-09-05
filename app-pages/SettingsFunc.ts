@@ -2,11 +2,13 @@
  * Business logic for the Settings route
  */
 import { useState, useEffect, useRef } from 'react';
+import { Linking } from 'react-native';
 
 import Constants from 'expo-constants';
 import { useSession } from '@supabase/auth-helpers-react';
 
 import { supabaseClient } from '@/api/supabase-client';
+import { legalConfig } from '@/config';
 import { deleteCurrentUser } from '@/api/user-api';
 import { signOut } from '@/api/auth-api';
 import { t } from '@/i18n';
@@ -221,19 +223,34 @@ export function useSettings(props: SettingsProps): SettingsFunc {
     console.log('Navigate to data controls');
   }
 
+  function openLegalUrl(url: string | undefined, label: string): void {
+    if (!url) {
+      console.warn(`${label} URL not configured (see legalConfig in config.ts)`);
+      return;
+    }
+    Linking.openURL(url).catch((err) => {
+      console.error(`Failed to open ${label} URL:`, err);
+      setError(err instanceof Error ? err : new Error(`Failed to open ${label}`));
+    });
+  }
+
   function onTermsOfService(): void {
-    // TODO: Open terms of service URL in browser
-    console.log('Navigate to terms of service');
+    openLegalUrl(legalConfig.termsOfServiceUrl, 'Terms of Service');
   }
 
   function onPrivacyPolicy(): void {
-    // TODO: Open privacy policy URL in browser
-    console.log('Navigate to privacy policy');
+    openLegalUrl(legalConfig.privacyPolicyUrl, 'Privacy Policy');
   }
 
   function onHelpSupport(): void {
-    // TODO: Open help & support URL or in-app support screen
-    console.log('Navigate to help & support');
+    if (!legalConfig.supportEmail) {
+      console.warn('Support email not configured (see legalConfig in config.ts)');
+      return;
+    }
+    Linking.openURL(`mailto:${legalConfig.supportEmail}?subject=Planet support`).catch((err) => {
+      console.error('Failed to open mail client:', err);
+      setError(err instanceof Error ? err : new Error('Failed to open mail client'));
+    });
   }
 
   // ── Danger zone ──
